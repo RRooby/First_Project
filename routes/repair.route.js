@@ -20,7 +20,10 @@ router
 
 router
   .route('/:id')
-  .get(validExistRepair.validExistRepair, repairController.repairById)
+  .get(
+    validExistRepair.validExistRepairById,
+    repairController.findOneRepair
+  )
   .patch(
     validExistRepair.validExistRepair,
     repairController.updateRepair

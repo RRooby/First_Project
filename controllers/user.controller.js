@@ -36,11 +36,12 @@ exports.loginUser = catchAsync(async (req, res) => {
   });
 });
 
-exports.findAll = catchAsync(async (req, res) => {
+exports.findAllUser = catchAsync(async (req, res) => {
   const users = await User.findAll({
     where: {
       status: 'available',
     },
+    attributes: { exclude: ['password'] },
   });
 
   res.status(200).json({
@@ -50,13 +51,18 @@ exports.findAll = catchAsync(async (req, res) => {
   });
 });
 
-exports.userById = catchAsync(async (req, res) => {
+exports.findOneUser = catchAsync(async (req, res) => {
   const { user } = req;
 
   res.status(200).json({
     status: 'success',
-    message: 'Query has been done success',
-    user,
+    message: 'Query was successfully done',
+    user: {
+      id: user.id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
   });
 });
 

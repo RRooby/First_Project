@@ -17,11 +17,11 @@ router.post('/login', userController.loginUser);
 
 router.use(authMiddleware.protect);
 
-router.route('/').get(userController.findAll);
+router.route('/').get(userController.findAllUser);
 
 router
   .route('/:id')
-  .get(validExistUser.validExistUser, userController.userById)
+  .get(validExistUser.validExistUser, userController.findOneUser)
   .patch(
     validExistUser.validExistUser,
     authMiddleware.protectAccountOwner,
